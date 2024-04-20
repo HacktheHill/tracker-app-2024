@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  tracker:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgres://dev:hackthehill@127.0.0.1:5432/my_database
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: hackthehill
+      POSTGRES_DB: tracker
+    #volumes:
+    #  - ./pgdata:/var/lib/postgresql/data

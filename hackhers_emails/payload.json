@@ -1,0 +1,21 @@
+{
+    "body_html": "<h1>Hello World {{value1}} {{value2}}</h1>",
+    "recipients": [
+        {
+            "email": "ryanawad2004@gmail.com",
+            "subject": "my subject1",
+            "values_to_substitute": {
+                "value1": "hello",
+                "value2": "world"
+            }
+        },
+        {
+            "email": "ryanawad@yahoo.com",
+            "subject": "my subject2",
+            "values_to_substitute": {
+                "value1": "fu",
+                "value2": "bar"
+            }
+        }
+    ]
+}
