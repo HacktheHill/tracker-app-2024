@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  tracker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest # eventually agree on a static version of postgres for stability
+    restart: always
+    environment:
+      POSTGRES_DB: tracker-db
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: hackthehill
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
