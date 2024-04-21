@@ -26,6 +26,9 @@ dependencies:
   sequelize:
     specifier: ^6.37.3
     version: 6.37.3(pg-hstore@2.3.4)(pg@8.11.5)
+  zod:
+    specifier: ^3.22.5
+    version: 3.22.5
 
 devDependencies:
   '@types/node':
@@ -3139,3 +3142,7 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /zod@3.22.5:
+    resolution: {integrity: sha512-HqnGsCdVZ2xc0qWPLdO25WnseXThh0kEYKIdV5F/hTHO75hNZFp8thxSeHhiPrHZKrFTo1SOgkAj9po5bexZlw==}
+    dev: false
