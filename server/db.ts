@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize';
-import {config} from 'dotenv';
+import { config } from 'dotenv';
 config();
 
 let {POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_ADDR, POSTGRES_DB, NODE_ENV} = process.env;

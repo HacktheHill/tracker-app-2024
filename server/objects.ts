@@ -6,4 +6,4 @@ export const Product = sequelize.define('product', {
   price: DataTypes.INTEGER
 });
 
-await sequelize.sync({force: false})
+await sequelize.sync({force: false});

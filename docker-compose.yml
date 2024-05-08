@@ -9,7 +9,9 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
-    command: pnpm run dev
+    command: >
+      sh -c "echo \"JWT_SECRET=$(openssl rand -hex 32)\" >> /app/.env &&
+             pnpm run dev"
     depends_on:
       - postgres
 
