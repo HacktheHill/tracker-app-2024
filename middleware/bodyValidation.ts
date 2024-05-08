@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import z from 'zod';
 
+// endpoints that require a specific body schema
 const requestBodySchemas: Record<string, z.ZodObject<any>> = {
   "/api/dbTests/createProduct": z.object({
     productName: z.string().min(1),
@@ -8,6 +9,7 @@ const requestBodySchemas: Record<string, z.ZodObject<any>> = {
   })
 };
 
+// endpoints to ignore
 const ignoredEndpoints: string[] = [
   "/api/ping", 
   "/api/dbTests/getProducts"
