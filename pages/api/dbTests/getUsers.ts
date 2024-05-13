@@ -15,8 +15,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const users = await User.findAll({
         include: [{ model: UserInfo }],
       });
+      let savedUsers = users.map((user) => user.toJSON());
 
-      res.status(200).json({ userInstances: users });
+      res.status(200).json({ userInstances: savedUsers });
     } catch (error) {
       console.error('Error fetching users:', error);
       // res.status(500).json({ error: 'Internal Server Error' });
