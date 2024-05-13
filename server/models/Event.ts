@@ -1,75 +1,75 @@
 import sequelize from "../db";
-import UserInfo from "./UserInfo";
 
 import {
   Sequelize,
   DataTypes,
   Model,
-  InferAttributes,
-  InferCreationAttributes,
-  CreationOptional,
 } from 'sequelize';
 
-export class Organiser extends Model {
+export class Event extends Model {
   //defining the attributes of the model
   public id!: number;
-  public yearStanding!: string;
-  public resume!: string;
-  public skill!: string;
-  public HtHmember!: Boolean;
-  public OrganiserRole!: string;
-  public institutionName!: string;
+  public startDate!: Date;
+  public endDate!: Date;
+  public hostName!: String;
+  public description!: String;
+  public location!: String;
+  public image!: Blob;
+  public eventType!: String;
+  public regLink!: String;
 
   // intializing the model 
   public static initialize(sequelize: Sequelize) {
-    Organiser.init({
+    Event.init({
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      yearStanding: {
+      startDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      endDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      hostName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      resume: {
+      description: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      skill: {
+      location: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      HtHmember: {
+      image: {
+        type: DataTypes.BLOB,
+        allowNull: true,
+      },
+      eventType: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      OrganiserRole: {
+      regLink: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      institutionName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+        allowNull: true,
+      }
 
     }, {
       sequelize,
-      modelName: 'Organizer',
+      modelName: 'Event',
     });
   }
 }
 
 // Initialize models
-Organiser.initialize(sequelize);
-
-// defining associations
-UserInfo.hasOne(Organiser, {
-    foreignKey: 'id',
-    onDelete: 'CASCADE',
-  });
+Event.initialize(sequelize);
 
 // exporting the models
-export default Organiser;
+export default Event;
 
 await sequelize.sync({force: false});

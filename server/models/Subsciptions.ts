@@ -1,55 +1,45 @@
 import sequelize from "../db";
-import User from "./User"
 
 import {
   Sequelize,
   DataTypes,
   Model,
-  InferAttributes,
-  InferCreationAttributes,
-  CreationOptional,
 } from 'sequelize';
 
-export class Session extends Model {
+export class Subscriptions extends Model {
   //defining the attributes of the model
   public id!: number;
-  public sessionToken!: number;
-  public exp!: Date;
+  public email!: String;
+  public subscribed!: Boolean;
 
   // intializing the model 
   public static initialize(sequelize: Sequelize) {
-    Session.init({
+    Subscriptions.init({
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      sessionToken: {
-        type: DataTypes.INTEGER,
+      email: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
-      exp: {
-        type: DataTypes.DATE,
+      subscribed: {
+        type: DataTypes.BOOLEAN,
         allowNull: false,
       },
 
     }, {
       sequelize,
-      modelName: 'Session',
+      modelName: 'Subscriptions',
     });
   }
 }
 
 // Initialize models
-Session.initialize(sequelize);
-
-// defining associations
-User.hasOne(Session, {
-    foreignKey: 'id',
-    onDelete: 'CASCADE',
-  });
+Subscriptions.initialize(sequelize);
 
 // exporting the models
-export default Session;
+export default Subscriptions;
 
 await sequelize.sync({force: false});

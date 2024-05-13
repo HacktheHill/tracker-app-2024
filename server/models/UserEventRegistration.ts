@@ -1,4 +1,5 @@
 import sequelize from "../db";
+import Event from "./Event";
 import UserInfo from "./UserInfo";
 
 import {
@@ -10,58 +11,57 @@ import {
   CreationOptional,
 } from 'sequelize';
 
-export class Sponsor extends Model {
+export class UserEventRegistration extends Model {
   //defining the attributes of the model
   public id!: number;
-  public companyRole!: string;
-  public institutionName!: string;
+  public regDate!: Date;
+  public attended!: Boolean;
 
   // intializing the model 
   public static initialize(sequelize: Sequelize) {
-    Sponsor.init({
+    UserEventRegistration.init({
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      yearStanding: {
-        type: DataTypes.STRING,
+      regDate: {
+        type: DataTypes.DATE,
         allowNull: false,
       },
-      skill: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      companyRole: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      institutionName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      specialization: {
-        type: DataTypes.STRING,
+      attended: {
+        type: DataTypes.BOOLEAN,
         allowNull: false,
       },
 
     }, {
       sequelize,
-      modelName: 'Sponsor',
+      modelName: 'UserEventRegistration',
     });
   }
 }
 
 // Initialize models
-Sponsor.initialize(sequelize);
+UserEventRegistration.initialize(sequelize);
 
 // defining associations
-UserInfo.hasOne(Sponsor, {
-    foreignKey: 'id',
+UserInfo.hasOne(UserEventRegistration, {
+  onDelete: 'CASCADE',
+  foreignKey: {
+    name: 'UserInfoID',
+    allowNull: false,
+  }
+  });
+
+Event.hasOne(UserEventRegistration, {
     onDelete: 'CASCADE',
+    foreignKey: {
+      name: 'eventId',
+      allowNull: false,
+    }
   });
 
 // exporting the models
-export default Sponsor;
+export default UserEventRegistration;
 
 await sequelize.sync({force: false});

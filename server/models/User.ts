@@ -5,18 +5,13 @@ import {
   Sequelize,
   DataTypes,
   Model,
-  InferAttributes,
-  InferCreationAttributes,
-  CreationOptional,
 } from 'sequelize';
 
 export class User extends Model {
   //defining the attributes of the model
   public id!: number;
-  public firstName!: string;
-  public lastName!: string;
   public provider!: string;
-  public providerAccountID!: string;
+  public providerAccountID!: number;
   public refresherToken!: number;
   public refresherTokenExpiresIn!: number;
   public accessToken!: number;
@@ -36,18 +31,9 @@ export class User extends Model {
         autoIncrement: true,
         primaryKey: true,
       },
-      firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       provider: {
         type: DataTypes.STRING,
-        autoIncrement: true,
-        primaryKey: true,
+        allowNull: false,
       },
       providerAccountID: {
         type: DataTypes.STRING,
@@ -59,8 +45,7 @@ export class User extends Model {
       },
       refresherTokenExpiresIn: {
         type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
+        allowNull: false,
       },
       accessToken: {
         type: DataTypes.INTEGER,
@@ -72,8 +57,7 @@ export class User extends Model {
       },
       scope: {
         type: DataTypes.STRING,
-        autoIncrement: true,
-        primaryKey: true,
+        allowNull: false,
       },
       tokenType: {
         type: DataTypes.STRING,
@@ -85,8 +69,7 @@ export class User extends Model {
       },
       recoveryKey: {
         type: DataTypes.STRING,
-        autoIncrement: true,
-        primaryKey: true,
+        allowNull: false,
       },
       sessionState: {
         type: DataTypes.STRING,

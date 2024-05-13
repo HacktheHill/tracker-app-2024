@@ -1,54 +1,52 @@
 import sequelize from "../db";
+import UserInfo from "./UserInfo";
 
 import {
   Sequelize,
   DataTypes,
   Model,
-  InferAttributes,
-  InferCreationAttributes,
-  CreationOptional,
 } from 'sequelize';
 
-export class Event extends Model {
+export class SocialMedia extends Model {
   //defining the attributes of the model
   public id!: number;
-  public startDate!: Date;
-  public endDate!: Date;
-  public hostName!: String;
-  public description!: String;
-  public location!: String;
-  public image!: Blob;
-  public eventType!: String;
-  public regLink!: String;
+  public name!: string;
+  public link!: string;
 
   // intializing the model 
   public static initialize(sequelize: Sequelize) {
-    Event.init({
+    SocialMedia.init({
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      regDate: {
-        type: DataTypes.DATE,
+      name: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
-      attended: {
-        type: DataTypes.BOOLEAN,
+      link: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
 
     }, {
       sequelize,
-      modelName: 'Event',
+      modelName: 'User',
     });
   }
 }
 
 // Initialize models
-Event.initialize(sequelize);
+SocialMedia.initialize(sequelize);
+
+// defining associations
+UserInfo.hasMany(SocialMedia, {
+  foreignKey: 'UserInfoID',
+  onDelete: 'CASCADE',
+});
 
 // exporting the models
-export default Event;
+export default SocialMedia;
 
 await sequelize.sync({force: false});

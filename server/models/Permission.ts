@@ -4,55 +4,42 @@ import {
   Sequelize,
   DataTypes,
   Model,
-  InferAttributes,
-  InferCreationAttributes,
-  CreationOptional,
 } from 'sequelize';
 
-export class EmergencyContact extends Model {
+export class Permission extends Model {
   //defining the attributes of the model
   public id!: number;
-  public firstName!: string;
-  public lastName!: string;
-  public phoneNumber!: number;
-  public realtionship!: string;
+  public name!: string;
+  public description!: string;
 
   // intializing the model 
   public static initialize(sequelize: Sequelize) {
-    EmergencyContact.init({
+    Permission.init({
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      firstName: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      phoneNumber: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      realtionship: {
+      description: {
         type: DataTypes.STRING,
         allowNull: false,
       },
 
     }, {
       sequelize,
-      modelName: 'User',
+      modelName: 'Permission',
     });
   }
 }
 
 // Initialize models
-EmergencyContact.initialize(sequelize);
+Permission.initialize(sequelize);
 
 // exporting the models
-export default EmergencyContact;
+export default Permission;
 
 await sequelize.sync({force: false});

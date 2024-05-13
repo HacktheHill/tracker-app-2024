@@ -1,61 +1,65 @@
 import sequelize from "../db";
-import Event from "./Event";
-import UserInfo from "./UserInfo";
+import UserInfo from "./UserInfo"
 
 import {
   Sequelize,
   DataTypes,
   Model,
-  InferAttributes,
-  InferCreationAttributes,
-  CreationOptional,
 } from 'sequelize';
 
-export class UserEventRegistration extends Model {
+export class AuditLog extends Model {
   //defining the attributes of the model
   public id!: number;
-  public regDate!: Date;
-  public attended!: Boolean;
+  public timestamp!: Date;
+  public route!: String;
+  public action!: String;
+  public details!: String;
 
   // intializing the model 
   public static initialize(sequelize: Sequelize) {
-    UserEventRegistration.init({
+    AuditLog.init({
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      regDate: {
+      timestamp: {
         type: DataTypes.DATE,
         allowNull: false,
       },
-      attended: {
-        type: DataTypes.BOOLEAN,
+      route: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      action: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      details: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
 
     }, {
       sequelize,
-      modelName: 'UserEventRegistration',
+      modelName: 'AuditLog',
     });
   }
 }
 
 // Initialize models
-UserEventRegistration.initialize(sequelize);
+AuditLog.initialize(sequelize);
 
 // defining associations
-UserInfo.hasOne(UserEventRegistration, {
-    foreignKey: 'id',
+UserInfo.hasOne(AuditLog, {
     onDelete: 'CASCADE',
-  });
-
-Event.hasOne(UserEventRegistration, {
-    foreignKey: 'id',
-    onDelete: 'CASCADE',
+    foreignKey: {
+      name: 'UserInfoID',
+      allowNull: false,
+    }
   });
 
 // exporting the models
-export default UserEventRegistration;
+export default AuditLog;
 
 await sequelize.sync({force: false});

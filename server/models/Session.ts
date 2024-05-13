@@ -1,49 +1,55 @@
 import sequelize from "../db";
-import UserInfo from "./UserInfo";
+import User from "./User"
 
 import {
   Sequelize,
   DataTypes,
   Model,
-  InferAttributes,
-  InferCreationAttributes,
-  CreationOptional,
 } from 'sequelize';
 
-export class Permission extends Model {
+export class Session extends Model {
   //defining the attributes of the model
   public id!: number;
-  public name!: string;
-  public description!: string;
+  public sessionToken!: number;
+  public exp!: Date;
 
   // intializing the model 
   public static initialize(sequelize: Sequelize) {
-    Permission.init({
+    Session.init({
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
-        type: DataTypes.STRING,
+      sessionToken: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
-      description: {
-        type: DataTypes.STRING,
+      exp: {
+        type: DataTypes.DATE,
         allowNull: false,
       },
 
     }, {
       sequelize,
-      modelName: 'Permission',
+      modelName: 'Session',
     });
   }
 }
 
 // Initialize models
-Permission.initialize(sequelize);
+Session.initialize(sequelize);
+
+// defining associations
+User.hasOne(Session, {
+    onDelete: 'CASCADE',
+    foreignKey: {
+      name: 'userId',
+      allowNull: false,
+    }
+  });
 
 // exporting the models
-export default Permission;
+export default Session;
 
 await sequelize.sync({force: false});

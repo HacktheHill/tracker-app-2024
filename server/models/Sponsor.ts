@@ -1,65 +1,55 @@
 import sequelize from "../db";
-import UserInfo from "./UserInfo"
+import UserInfo from "./UserInfo";
 
 import {
   Sequelize,
   DataTypes,
   Model,
-  InferAttributes,
-  InferCreationAttributes,
-  CreationOptional,
 } from 'sequelize';
 
-export class Session extends Model {
+export class Sponsor extends Model {
   //defining the attributes of the model
   public id!: number;
-  public timestamp!: Date;
-  public route!: String;
-  public action!: String;
-  public details!: String;
+  public companyRole!: string;
+  public companyName!: string;
 
   // intializing the model 
   public static initialize(sequelize: Sequelize) {
-    Session.init({
+    Sponsor.init({
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      timestamp: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-      route: {
+      companyRole: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      action: {
+      companyName: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      details: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+      }
 
     }, {
       sequelize,
-      modelName: 'AuditLog',
+      modelName: 'Sponsor',
     });
   }
 }
 
 // Initialize models
-Session.initialize(sequelize);
+Sponsor.initialize(sequelize);
 
 // defining associations
-UserInfo.hasOne(Session, {
-    foreignKey: 'id',
+UserInfo.hasOne(Sponsor, {
     onDelete: 'CASCADE',
+    foreignKey: {
+      name: 'UserInfoID',
+      allowNull: false
+    }
   });
 
 // exporting the models
-export default Session;
+export default Sponsor;
 
 await sequelize.sync({force: false});

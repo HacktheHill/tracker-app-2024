@@ -5,9 +5,6 @@ import {
   Sequelize,
   DataTypes,
   Model,
-  InferAttributes,
-  InferCreationAttributes,
-  CreationOptional,
 } from 'sequelize';
 
 export class Hacker extends Model {
@@ -19,7 +16,6 @@ export class Hacker extends Model {
   public yearStanding!: number;
   public skill!: string;
   public accessibilityRequirements!: string;
-  public attendanceType!: string;
   public transportRequest!: boolean;
   public shirtSize!: number;
   public acceptanceExp!: Date;
@@ -57,10 +53,6 @@ export class Hacker extends Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      attendanceType: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       companyRole: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -94,8 +86,11 @@ Hacker.initialize(sequelize);
 
 // defining associations
 UserInfo.hasOne(Hacker, {
-    foreignKey: 'id',
     onDelete: 'CASCADE',
+    foreignKey: {
+      name: 'UserInfoID',
+      allowNull: false
+    }
   });
 
 // exporting the models
