@@ -68,6 +68,7 @@ UserInfo.hasOne(Organiser, {
       allowNull: false
     }
   });
+Organiser.belongsTo(UserInfo);
 
 // exporting the models
 export default Organiser;

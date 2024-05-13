@@ -9,6 +9,7 @@ import {
 export class Event extends Model {
   //defining the attributes of the model
   public id!: number;
+  public name!: String;
   public startDate!: Date;
   public endDate!: Date;
   public hostName!: String;
@@ -25,6 +26,10 @@ export class Event extends Model {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       startDate: {
         type: DataTypes.DATE,

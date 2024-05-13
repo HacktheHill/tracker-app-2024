@@ -48,6 +48,7 @@ UserInfo.hasOne(Sponsor, {
       allowNull: false
     }
   });
+Sponsor.belongsTo(UserInfo);
 
 // exporting the models
 export default Sponsor;

@@ -68,6 +68,7 @@ Sponsor.hasOne(Payment, {
         allowNull: false
         }
   });
+Payment.belongsTo(Sponsor);
 
 // exporting the models
 export default Payment;

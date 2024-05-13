@@ -45,6 +45,7 @@ UserInfo.hasMany(SocialMedia, {
   foreignKey: 'UserInfoID',
   onDelete: 'CASCADE',
 });
+SocialMedia.belongsTo(UserInfo);
 
 // exporting the models
 export default SocialMedia;

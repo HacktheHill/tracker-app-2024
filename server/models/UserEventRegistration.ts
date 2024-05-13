@@ -52,6 +52,7 @@ UserInfo.hasOne(UserEventRegistration, {
     allowNull: false,
   }
   });
+UserEventRegistration.belongsTo(UserInfo);
 
 Event.hasOne(UserEventRegistration, {
     onDelete: 'CASCADE',
@@ -60,6 +61,7 @@ Event.hasOne(UserEventRegistration, {
       allowNull: false,
     }
   });
+UserEventRegistration.belongsTo(Event);
 
 // exporting the models
 export default UserEventRegistration;

@@ -92,6 +92,7 @@ UserInfo.hasOne(Hacker, {
       allowNull: false
     }
   });
+Hacker.belongsTo(UserInfo);
 
 // exporting the models
 export default Hacker;

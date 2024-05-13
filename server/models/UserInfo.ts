@@ -45,6 +45,10 @@ export class UserInfo extends Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      prefferedName: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       externalAttendedHackathon: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -52,10 +56,6 @@ export class UserInfo extends Model {
       userRole: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      prefferedName: {
-        type: DataTypes.STRING,
-        allowNull: true,
       },
       email: {
         type: DataTypes.STRING,
@@ -116,6 +116,7 @@ User.hasOne(UserInfo, {
     allowNull: false,
   }
 });
+UserInfo.belongsTo(User);
 
 EmergencyContact.hasOne(UserInfo, {
   onDelete: 'CASCADE',
@@ -124,6 +125,7 @@ EmergencyContact.hasOne(UserInfo, {
   allowNull: true,
   }
 });
+UserInfo.belongsTo(EmergencyContact);
 
 Permission.hasOne(UserInfo, {
   onDelete: 'CASCADE',
@@ -132,6 +134,7 @@ Permission.hasOne(UserInfo, {
   allowNull: false,
   }
 });
+UserInfo.belongsTo(Permission);
 
 // exporting the models
 export default UserInfo;

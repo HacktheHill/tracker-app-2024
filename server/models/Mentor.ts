@@ -63,6 +63,7 @@ UserInfo.hasOne(Mentor, {
       allowNull: false
     }
   });
+Mentor.belongsTo(UserInfo);
 
 // exporting the models
 export default Mentor;

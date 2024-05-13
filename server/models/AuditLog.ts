@@ -58,6 +58,7 @@ UserInfo.hasOne(AuditLog, {
       allowNull: false,
     }
   });
+AuditLog.belongsTo(UserInfo);
 
 // exporting the models
 export default AuditLog;

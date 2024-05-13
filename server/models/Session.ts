@@ -48,6 +48,7 @@ User.hasOne(Session, {
       allowNull: false,
     }
   });
+Session.belongsTo(User);
 
 // exporting the models
 export default Session;
