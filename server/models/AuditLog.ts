@@ -54,7 +54,7 @@ AuditLog.initialize(sequelize);
 UserInfo.hasOne(AuditLog, {
     onDelete: 'CASCADE',
     foreignKey: {
-      name: 'UserInfoID',
+      name: 'UserInfoId',
       allowNull: false,
     }
   });

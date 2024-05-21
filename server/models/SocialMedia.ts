@@ -42,7 +42,7 @@ SocialMedia.initialize(sequelize);
 
 // defining associations
 UserInfo.hasMany(SocialMedia, {
-  foreignKey: 'UserInfoID',
+  foreignKey: 'UserInfoId',
   onDelete: 'CASCADE',
 });
 SocialMedia.belongsTo(UserInfo);

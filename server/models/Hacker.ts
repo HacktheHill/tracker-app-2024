@@ -88,7 +88,7 @@ Hacker.initialize(sequelize);
 UserInfo.hasOne(Hacker, {
     onDelete: 'CASCADE',
     foreignKey: {
-      name: 'UserInfoID',
+      name: 'UserInfoId',
       allowNull: false
     }
   });

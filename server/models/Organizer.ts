@@ -64,7 +64,7 @@ Organiser.initialize(sequelize);
 UserInfo.hasOne(Organiser, {
     onDelete: 'CASCADE',
     foreignKey: {
-      name: 'UserInfoID',
+      name: 'UserInfoId',
       allowNull: false
     }
   });

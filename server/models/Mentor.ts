@@ -59,7 +59,7 @@ Mentor.initialize(sequelize);
 UserInfo.hasOne(Mentor, {
     onDelete: 'CASCADE',
     foreignKey: {
-      name: 'UserInfoID',
+      name: 'UserInfoId',
       allowNull: false
     }
   });

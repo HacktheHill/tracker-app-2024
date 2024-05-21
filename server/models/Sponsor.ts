@@ -44,7 +44,7 @@ Sponsor.initialize(sequelize);
 UserInfo.hasOne(Sponsor, {
     onDelete: 'CASCADE',
     foreignKey: {
-      name: 'UserInfoID',
+      name: 'UserInfoId',
       allowNull: false
     }
   });

@@ -64,7 +64,7 @@ Payment.initialize(sequelize);
 Sponsor.hasOne(Payment, {
     onDelete: 'CASCADE',
     foreignKey: {
-        name: 'SponsorID',
+        name: 'SponsorId',
         allowNull: false
         }
   });

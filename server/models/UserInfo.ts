@@ -112,7 +112,7 @@ UserInfo.initialize(sequelize);
 User.hasOne(UserInfo, {
   onDelete: 'CASCADE',
   foreignKey: {
-    name: 'UserID',
+    name: 'UserId',
     allowNull: false,
   }
 });
@@ -121,7 +121,7 @@ UserInfo.belongsTo(User);
 EmergencyContact.hasOne(UserInfo, {
   onDelete: 'CASCADE',
   foreignKey: {
-  name: 'EmergencyContactID',
+  name: 'EmergencyContactId',
   allowNull: true,
   }
 });
@@ -130,7 +130,7 @@ UserInfo.belongsTo(EmergencyContact);
 Permission.hasOne(UserInfo, {
   onDelete: 'CASCADE',
   foreignKey: {
-  name: 'PermissionID',
+  name: 'PermissionId',
   allowNull: false,
   }
 });
