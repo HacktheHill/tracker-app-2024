@@ -5,7 +5,7 @@ import z from 'zod';
 // Define request body schemas
 const requestBodySchemas: Record<string, z.ZodObject<any>> = {
   "/api/dbTests/createUserInfo": z.object({
-    UserID: z.number(),
+    UserId: z.number(),
     firstName: z.string(),
     lastName: z.string(),
   })
