@@ -12,7 +12,7 @@ export class Subscriptions extends Model {
   public email!: String;
   public subscribed!: Boolean;
 
-  // intializing the model 
+  // initializing the model 
   public static initialize(sequelize: Sequelize) {
     Subscriptions.init({
       id: {

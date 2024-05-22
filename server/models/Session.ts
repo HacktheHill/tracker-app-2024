@@ -13,7 +13,7 @@ export class Session extends Model {
   public sessionToken!: number;
   public exp!: Date;
 
-  // intializing the model 
+  // initializing the model 
   public static initialize(sequelize: Sequelize) {
     Session.init({
       id: {

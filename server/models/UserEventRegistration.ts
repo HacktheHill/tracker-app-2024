@@ -17,7 +17,7 @@ export class UserEventRegistration extends Model {
   public regDate!: Date;
   public attended!: Boolean;
 
-  // intializing the model 
+  // initializing the model 
   public static initialize(sequelize: Sequelize) {
     UserEventRegistration.init({
       id: {

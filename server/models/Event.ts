@@ -19,7 +19,7 @@ export class Event extends Model {
   public eventType!: String;
   public regLink!: String;
 
-  // intializing the model 
+  // initializing the model 
   public static initialize(sequelize: Sequelize) {
     Event.init({
       id: {

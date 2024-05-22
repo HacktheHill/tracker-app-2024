@@ -16,7 +16,7 @@ export class Mentor extends Model {
   public companyRole!: string;
   public companyName!: string;
 
-  // intializing the model 
+  // initializing the model 
   public static initialize(sequelize: Sequelize) {
     Mentor.init({
       id: {

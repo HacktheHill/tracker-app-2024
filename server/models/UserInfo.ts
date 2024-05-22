@@ -17,7 +17,7 @@ export class UserInfo extends Model {
   public lastName!: string;
   public externalAttendedHackathon!: string;
   public userRole!: string;
-  public prefferedName!: string;
+  public preferredName!: string;
   public email!: string;
   public gender!: string;
   public sexualOrient!: string;
@@ -29,7 +29,7 @@ export class UserInfo extends Model {
   public avatar!: Blob;
   public attendanceMode!: string;
 
-  // intializing the model 
+  // initializing the model 
   public static initialize(sequelize: Sequelize) {
     UserInfo.init({
       id: {
@@ -45,7 +45,7 @@ export class UserInfo extends Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      prefferedName: {
+      preferredName: {
         type: DataTypes.STRING,
         allowNull: true,
       },

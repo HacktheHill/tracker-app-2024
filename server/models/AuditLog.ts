@@ -15,7 +15,7 @@ export class AuditLog extends Model {
   public action!: String;
   public details!: String;
 
-  // intializing the model 
+  // initializing the model 
   public static initialize(sequelize: Sequelize) {
     AuditLog.init({
       id: {

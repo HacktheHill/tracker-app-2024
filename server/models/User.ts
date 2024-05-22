@@ -23,7 +23,7 @@ export class User extends Model {
   public sessionState!: string;
   public extExpiresIn!: number;
 
-  // intializing the model 
+  // initializing the model 
   public static initialize(sequelize: Sequelize) {
     User.init({
       id: {

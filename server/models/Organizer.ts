@@ -7,19 +7,19 @@ import {
   Model,
 } from 'sequelize';
 
-export class Organiser extends Model {
+export class Organizer extends Model {
   //defining the attributes of the model
   public id!: number;
   public yearStanding!: string;
   public resume!: string;
   public skill!: string;
   public HtHmember!: Boolean;
-  public OrganiserRole!: string;
+  public OrganizerRole!: string;
   public institutionName!: string;
 
-  // intializing the model 
+  // initializing the model 
   public static initialize(sequelize: Sequelize) {
-    Organiser.init({
+    Organizer.init({
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -41,7 +41,7 @@ export class Organiser extends Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      OrganiserRole: {
+      OrganizerRole: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -58,19 +58,19 @@ export class Organiser extends Model {
 }
 
 // Initialize models
-Organiser.initialize(sequelize);
+Organizer.initialize(sequelize);
 
 // defining associations
-UserInfo.hasOne(Organiser, {
+UserInfo.hasOne(Organizer, {
     onDelete: 'CASCADE',
     foreignKey: {
       name: 'UserInfoId',
       allowNull: false
     }
   });
-Organiser.belongsTo(UserInfo);
+Organizer.belongsTo(UserInfo);
 
 // exporting the models
-export default Organiser;
+export default Organizer;
 
 await sequelize.sync({force: false});

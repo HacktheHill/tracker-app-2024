@@ -21,7 +21,7 @@ export class Hacker extends Model {
   public acceptanceExp!: Date;
   public walkIn!: boolean;
 
-  // intializing the model 
+  // initializing the model 
   public static initialize(sequelize: Sequelize) {
     Hacker.init({
       id: {

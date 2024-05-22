@@ -13,7 +13,7 @@ export class SocialMedia extends Model {
   public name!: string;
   public link!: string;
 
-  // intializing the model 
+  // initializing the model 
   public static initialize(sequelize: Sequelize) {
     SocialMedia.init({
       id: {

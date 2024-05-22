@@ -17,7 +17,7 @@ export class Payment extends Model {
   public date!: Date;
   public invoice!: string;
 
-  // intializing the model 
+  // initializing the model 
   public static initialize(sequelize: Sequelize) {
     Payment.init({
       id: {

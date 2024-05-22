@@ -14,7 +14,7 @@ export class EmergencyContact extends Model {
   public phoneNumber!: number;
   public realtionship!: string;
 
-  // intializing the model 
+  // initializing the model 
   public static initialize(sequelize: Sequelize) {
     EmergencyContact.init({
       id: {
