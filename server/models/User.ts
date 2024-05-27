@@ -1,5 +1,4 @@
 import sequelize from "../db";
-import UserInfo from "./UserInfo"
 
 import {
   Sequelize,
@@ -7,88 +6,67 @@ import {
   Model,
 } from 'sequelize';
 
-export class User extends Model {
-  //defining the attributes of the model
-  public id!: number;
-  public provider!: string;
-  public providerAccountID!: number;
-  public refresherToken!: number;
-  public refresherTokenExpiresIn!: number;
-  public accessToken!: number;
-  public expiresAt!: Date;
-  public scope!: string;
-  public tokenType!: string;
-  public idToken!: number;
-  public recoveryKey!: string;
-  public sessionState!: string;
-  public extExpiresIn!: number;
+class User extends Model {}
 
-  // initializing the model 
-  public static initialize(sequelize: Sequelize) {
-    User.init({
-      id: {
+// initializing the model and defining its attributes
+  User.init(
+    {
+    id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-      },
-      provider: {
+    },
+    provider: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      providerAccountID: {
+    },
+    providerAccountID: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      refresherToken: {
+    },
+    refresherToken: {
         type: DataTypes.INTEGER,
         allowNull: false,
-      },
-      refresherTokenExpiresIn: {
+    },
+    refresherTokenExpiresIn: {
+        type: DataTypes.NUMBER,
+        allowNull: false,
+    },
+    accessToken: {
         type: DataTypes.INTEGER,
         allowNull: false,
-      },
-      accessToken: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      expiresAt: {
+    },
+    expiresAt: {
         type: DataTypes.DATE,
         allowNull: false,
-      },
-      scope: {
+    },
+    scope: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      tokenType: {
+    },
+    tokenType: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      idToken: {
+    },
+    idToken: {
         type: DataTypes.INTEGER,
         allowNull: false,
-      },
-      recoveryKey: {
+    },
+    recoveryKey: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      sessionState: {
+    },
+    sessionState: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      extExpiresIn: {
+    },
+    extExpiresIn: {
         type: DataTypes.INTEGER,
         allowNull: false,
-      },
-
-    }, {
-      sequelize,
-      modelName: 'User',
-    });
-  }
-}
-
-// Initialize models
-User.initialize(sequelize);
+    },
+  }, 
+    {sequelize},
+  );
 
 // exporting the models
 export default User;
