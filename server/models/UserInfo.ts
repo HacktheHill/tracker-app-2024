@@ -81,15 +81,6 @@ const UserInfo = sequelize.define(
   }
 )
 
-// defining associations
-UserInfo.belongsTo(User, {
-  onDelete: 'CASCADE',
-  foreignKey: {
-    name: 'UserInfoId',
-    allowNull: false,
-  }
-});
-
 UserInfo.belongsTo(Permission, {
   onDelete: 'CASCADE',
   foreignKey: {
