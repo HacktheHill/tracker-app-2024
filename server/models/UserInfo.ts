@@ -89,7 +89,13 @@ UserInfo.belongsTo(Permission, {
   }
 });
 
-await sequelize.sync({force: false});
+UserInfo.belongsTo(EmergencyContact, {
+  onDelete: 'CASCADE',
+  foreignKey: {
+    name: 'EmergencyContactId',
+    allowNull: false,
+  }
+});
 
 // exporting the models
 export default UserInfo;

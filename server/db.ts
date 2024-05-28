@@ -17,4 +17,6 @@ try {
   console.error('Unable to connect to the database:', error);
 }
 
+await sequelize.sync({force: false, logging: true});
+
 export default sequelize;
