@@ -1,47 +1,47 @@
+import sequelize from "../db";
 import UserInfo from "./UserInfo"
+
 import {
   Sequelize,
   DataTypes,
   Model,
-  ModelStatic
 } from 'sequelize';
 
-module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes): ModelStatic<Model<any, any>> => {
-  const AuditLog = sequelize.define(
-    'AuditLog',
-    {
-      id: {
-        type: dataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      timestamp: {
-        type: dataTypes.DATE,
-        allowNull: false,
-      },
-      route: {
-        type: dataTypes.STRING,
-        allowNull: false,
-      },
-      action: {
-        type: dataTypes.STRING,
-        allowNull: false,
-      },
-      details: {
-        type: dataTypes.STRING,
-        allowNull: false,
-      },
-    }
-  )
+const AuditLog = sequelize.define(
+  'AuditLog',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    timestamp: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    route: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    action: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    details: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  }
+)
 
-  // defining associations
-  //AuditLog.belongsTo(UserInfo, {
-  //  onDelete: 'CASCADE',
-  //  foreignKey: {
-  //    name: 'UserInfoId',
-  //    allowNull: false
-  //  }
-  //});
+// defining associations
+AuditLog.belongsTo(UserInfo, {
+  onDelete: 'CASCADE',
+  foreignKey: {
+    name: 'UserInfoId',
+    allowNull: false
+  }
+});
 
-  return AuditLog;
-}
+// exporting the models
+export default AuditLog;
