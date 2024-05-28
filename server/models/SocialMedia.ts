@@ -7,47 +7,35 @@ import {
   Model,
 } from 'sequelize';
 
-export class SocialMedia extends Model {
-  //defining the attributes of the model
-  public id!: number;
-  public name!: string;
-  public link!: string;
-
-  // initializing the model 
-  public static initialize(sequelize: Sequelize) {
-    SocialMedia.init({
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      link: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-
-    }, {
-      sequelize,
-      modelName: 'User',
-    });
+const SocialMedia = sequelize.define(
+  'SocialMedia',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    link: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }
-}
-
-// Initialize models
-SocialMedia.initialize(sequelize);
+)
 
 // defining associations
-UserInfo.hasMany(SocialMedia, {
-  foreignKey: 'UserInfoId',
+SocialMedia.belongsTo(UserInfo, {
   onDelete: 'CASCADE',
+  foreignKey: {
+    name: 'UserInfoId',
+    allowNull: false
+  }
 });
-SocialMedia.belongsTo(UserInfo);
+
+await sequelize.sync({force: false});
 
 // exporting the models
 export default SocialMedia;
-
-await sequelize.sync({force: false});

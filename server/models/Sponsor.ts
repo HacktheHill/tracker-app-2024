@@ -7,50 +7,35 @@ import {
   Model,
 } from 'sequelize';
 
-export class Sponsor extends Model {
-  //defining the attributes of the model
-  public id!: number;
-  public companyRole!: string;
-  public companyName!: string;
-
-  // initializing the model 
-  public static initialize(sequelize: Sequelize) {
-    Sponsor.init({
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      companyRole: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      companyName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      }
-
-    }, {
-      sequelize,
-      modelName: 'Sponsor',
-    });
+const Sponsor = sequelize.define(
+  'Sponsor',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    companyRole: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    companyName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   }
-}
-
-// Initialize models
-Sponsor.initialize(sequelize);
+)
 
 // defining associations
-UserInfo.hasOne(Sponsor, {
-    onDelete: 'CASCADE',
-    foreignKey: {
-      name: 'UserInfoId',
-      allowNull: false
-    }
-  });
-Sponsor.belongsTo(UserInfo);
+Sponsor.belongsTo(UserInfo, {
+  onDelete: 'CASCADE',
+  foreignKey: {
+    name: 'UserInfoId',
+    allowNull: false
+  }
+});
+
+await sequelize.sync({force: false});
 
 // exporting the models
 export default Sponsor;
-
-await sequelize.sync({force: false});

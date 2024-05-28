@@ -6,40 +6,26 @@ import {
   Model,
 } from 'sequelize';
 
-export class Subscriptions extends Model {
-  //defining the attributes of the model
-  public id!: number;
-  public email!: String;
-  public subscribed!: Boolean;
-
-  // initializing the model 
-  public static initialize(sequelize: Sequelize) {
-    Subscriptions.init({
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      subscribed: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-      },
-
-    }, {
-      sequelize,
-      modelName: 'Subscriptions',
-    });
+const Subscriptions = sequelize.define(
+  'Subscriptions',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    subscribed: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
   }
-}
+)
 
-// Initialize models
-Subscriptions.initialize(sequelize);
+await sequelize.sync({force: false});
 
 // exporting the models
 export default Subscriptions;
-
-await sequelize.sync({force: false});

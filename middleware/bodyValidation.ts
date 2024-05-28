@@ -1,20 +1,18 @@
-import { lstat } from "fs";
 import { NextRequest } from "next/server";
 import z from 'zod';
 
 // Define request body schemas
 const requestBodySchemas: Record<string, z.ZodObject<any>> = {
-  "/api/dbTests/createUserInfo": z.object({
-    UserId: z.number(),
-    firstName: z.string(),
-    lastName: z.string(),
-  })
+
 };
 
 // endpoints to ignore
 const ignoredEndpoints: string[] = [
   "/api/ping", 
-  "/api/dbTests/getUsers"
+  "/api/dbTests/getUsers",
+  "/api/dbTests/createSubscription", // should be moved to requestBodySchemas
+  "/api/dbTests/createUserInfo",
+  "/api/dbTests/createUser",
 ];
 
 // Middleware function to validate request body

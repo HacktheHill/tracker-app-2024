@@ -11,59 +11,43 @@ import {
   CreationOptional,
 } from 'sequelize';
 
-export class UserEventRegistration extends Model {
-  //defining the attributes of the model
-  public id!: number;
-  public regDate!: Date;
-  public attended!: Boolean;
-
-  // initializing the model 
-  public static initialize(sequelize: Sequelize) {
-    UserEventRegistration.init({
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      regDate: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-      attended: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-      },
-
-    }, {
-      sequelize,
-      modelName: 'UserEventRegistration',
-    });
+const UserEventRegistration = sequelize.define(
+  'UserEventRegistration',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    regDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    attended: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
   }
-}
-
-// Initialize models
-UserEventRegistration.initialize(sequelize);
+)
 
 // defining associations
-UserInfo.hasOne(UserEventRegistration, {
+UserEventRegistration.belongsTo(UserInfo, {
   onDelete: 'CASCADE',
   foreignKey: {
-    name: 'UserInfoID',
+    name: 'UserInfoId',
     allowNull: false,
   }
-  });
-UserEventRegistration.belongsTo(UserInfo);
+});
 
-Event.hasOne(UserEventRegistration, {
-    onDelete: 'CASCADE',
-    foreignKey: {
-      name: 'eventId',
-      allowNull: false,
-    }
-  });
-UserEventRegistration.belongsTo(Event);
+UserEventRegistration.belongsTo(Event, {
+  onDelete: 'CASCADE',
+  foreignKey: {
+    name: 'EventId',
+    allowNull: false,
+  }
+});
+
+await sequelize.sync({force: false});
 
 // exporting the models
 export default UserEventRegistration;
-
-await sequelize.sync({force: false});

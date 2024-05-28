@@ -10,11 +10,9 @@ import {
   Model,
 } from 'sequelize';
 
-class UserInfo extends Model {}
-
-// initializing the model 
-  UserInfo.init(
-    {
+const UserInfo = sequelize.define(
+  'UserInfo',
+  {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -79,39 +77,28 @@ class UserInfo extends Model {}
     attendanceMode: {
       type: DataTypes.STRING,
       allowNull: false,
-     },
-  }, {sequelize},
- );
+    },
+  }
+)
 
 // defining associations
-User.hasOne(UserInfo, {
+UserInfo.belongsTo(User, {
   onDelete: 'CASCADE',
   foreignKey: {
-    name: 'UserId',
+    name: 'UserInfoId',
     allowNull: false,
   }
 });
-UserInfo.belongsTo(User);
 
-EmergencyContact.hasOne(UserInfo, {
+UserInfo.belongsTo(Permission, {
   onDelete: 'CASCADE',
   foreignKey: {
-  name: 'EmergencyContactId',
-  allowNull: true,
+    name: 'PermissionId',
+    allowNull: false,
   }
 });
-UserInfo.belongsTo(EmergencyContact);
 
-Permission.hasOne(UserInfo, {
-  onDelete: 'CASCADE',
-  foreignKey: {
-  name: 'PermissionId',
-  allowNull: false,
-  }
-});
-UserInfo.belongsTo(Permission);
+await sequelize.sync({force: false});
 
 // exporting the models
 export default UserInfo;
-
-await sequelize.sync({force: false});

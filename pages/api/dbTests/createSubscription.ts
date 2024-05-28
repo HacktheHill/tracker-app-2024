@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import UserInfo from '@/server/models/UserInfo';
+import Subscriptions from '@/server/models/Subscriptions';
  
 type ResponseData = {
   success?: boolean;
@@ -9,7 +9,7 @@ type ResponseData = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
   if (req.method === 'POST') {
     try {
-      await UserInfo.create(req.body);
+      await Subscriptions.create(req.body);
 
       res.status(200).json({ success: true });
     } catch (err) {

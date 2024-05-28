@@ -7,65 +7,47 @@ import {
   Model,
 } from 'sequelize';
 
-export class Mentor extends Model {
-  //defining the attributes of the model
-  public id!: number;
-  public resume!: string;
-  public skill!: string;
-  public specialization!: string;
-  public companyRole!: string;
-  public companyName!: string;
-
-  // initializing the model 
-  public static initialize(sequelize: Sequelize) {
-    Mentor.init({
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      resume: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      skill: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      companyRole: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      companyName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      specialization: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-
-    }, {
-      sequelize,
-      modelName: 'Mentor',
-    });
+const Mentor = sequelize.define(
+  'Mentor',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    resume: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    skill: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    companyRole: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    companyName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    specialization: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }
-}
-
-// Initialize models
-Mentor.initialize(sequelize);
+)
 
 // defining associations
-UserInfo.hasOne(Mentor, {
-    onDelete: 'CASCADE',
-    foreignKey: {
-      name: 'UserInfoId',
-      allowNull: false
-    }
-  });
-Mentor.belongsTo(UserInfo);
+Mentor.belongsTo(UserInfo, {
+  onDelete: 'CASCADE',
+  foreignKey: {
+    name: 'UserInfoId',
+    allowNull: false
+  }
+});
+
+await sequelize.sync({force: false});
 
 // exporting the models
 export default Mentor;
-
-await sequelize.sync({force: false});

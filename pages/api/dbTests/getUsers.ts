@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { UserInfo } from '@/server/models/UserInfo'; // Assuming you have imported both User and UserInfo models
-import { User } from '@/server/models/User';
+import UserInfo from '@/server/models/UserInfo'; // Assuming you have imported both User and UserInfo models
+import User from '@/server/models/User';
 import { Model } from 'sequelize';
 
 type ResponseData = {
@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const users = await User.findAll({
         include: [{ model: UserInfo }],
       });
-      let savedUsers = users.map((user) => user.toJSON());
+      let savedUsers = users.map(user => user.toJSON());
 
       res.status(200).json({ userInstances: savedUsers });
     } catch (error) {

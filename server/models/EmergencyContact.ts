@@ -1,4 +1,5 @@
 import sequelize from "../db";
+import UserInfo from "./UserInfo";
 
 import {
   Sequelize,
@@ -6,50 +7,34 @@ import {
   Model,
 } from 'sequelize';
 
-export class EmergencyContact extends Model {
-  //defining the attributes of the model
-  public id!: number;
-  public firstName!: string;
-  public lastName!: string;
-  public phoneNumber!: number;
-  public realtionship!: string;
-
-  // initializing the model 
-  public static initialize(sequelize: Sequelize) {
-    EmergencyContact.init({
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      phoneNumber: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      realtionship: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-
-    }, {
-      sequelize,
-      modelName: 'User',
-    });
+const EmergencyContact = sequelize.define(
+  'EmergencyContact',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    phoneNumber: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    relationship: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   }
-}
+);
 
-// Initialize models
-EmergencyContact.initialize(sequelize);
+await sequelize.sync({force: false});
 
 // exporting the models
 export default EmergencyContact;
-
-await sequelize.sync({force: false});
