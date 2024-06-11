@@ -35,7 +35,5 @@ Sponsor.belongsTo(UserInfo, {
   }
 });
 
-await sequelize.sync({force: false});
-
 // exporting the models
 export default Sponsor;
