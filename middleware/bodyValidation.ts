@@ -1,32 +1,39 @@
 import { NextRequest } from "next/server";
 import z from 'zod';
 
-// endpoints that require a specific body schema
+// Define request body schemas
 const requestBodySchemas: Record<string, z.ZodObject<any>> = {
-  "/api/dbTests/createProduct": z.object({
-    productName: z.string().min(1),
-    productPrice: z.number()
-  })
+
 };
 
 // endpoints to ignore
 const ignoredEndpoints: string[] = [
   "/api/ping", 
-  "/api/dbTests/getProducts"
+  "/api/dbTests/getUsers",
+  "/api/dbTests/createSubscription", // should be moved to requestBodySchemas
+  "/api/dbTests/createUserInfo",
+  "/api/dbTests/createUser",
 ];
 
+// Middleware function to validate request body
 export default async function bodyValidationMiddleware(req: NextRequest, endpoint: string): Promise<Error|null> {
-  if (!Object.keys(requestBodySchemas).includes(endpoint) && !ignoredEndpoints.includes(endpoint)) // if you havent defined a body schema for the endpoint, error
-    return new Error("endpoint does not have a defined HTTP body schema");
-
+  // Check if endpoint has a defined HTTP body schema
+  if (!Object.keys(requestBodySchemas).includes(endpoint)&& !ignoredEndpoints.includes(endpoint)) {
+    return new Error("Endpoint does not have a defined HTTP body schema");
+  }
   if (ignoredEndpoints.includes(endpoint)) // if the schema for the endpoint is null, skip it
     return null;
+  // Get the expected schema for the endpoint
+  const schema = requestBodySchemas[endpoint];
 
-  let body = await req.json();
-  let validBody = requestBodySchemas[endpoint].safeParse(body); // check if the body matches the endpoint's schema
-  if (!validBody.success) {
-    console.log(validBody.error.message);
-    return new Error("bad request");
+  // Parse the request body according to the schema
+  try {
+    const body = await req.json();
+    schema.parse(body); // Throws an error if validation fails
+    return null; // Validation successful
+  } catch (error) {
+    // return validation error
+    const err = error as Error;
+    return new Error("Bad request: " + err.message);
   }
-  return null
 }
