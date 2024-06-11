@@ -47,5 +47,7 @@ UserEventRegistration.belongsTo(Event, {
   }
 });
 
+await sequelize.sync({force: false});
+
 // exporting the models
 export default UserEventRegistration;

@@ -35,5 +35,7 @@ Session.belongsTo(User, {
   }
 });
 
+await sequelize.sync({force: false});
+
 // exporting the models
 export default Session;

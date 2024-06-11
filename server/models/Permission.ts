@@ -25,5 +25,7 @@ const Permission = sequelize.define(
   }
 )
 
+await sequelize.sync({force: false});
+
 // exporting the models
 export default Permission;
