@@ -51,12 +51,16 @@ With time, writing conventional commit messages will become second nature and yo
 - Each commit should be able to stand on its own, and each commit should build on the previous one. This way, if a commit introduces a bug, it should be easy to identify and revert.
 - Each commit should be deployable and not break the build, tests, or functionality.
 - If you're not sure if a commit should be split, it's better to split it if each commit is deployable and doesn't break the build, tests, or functionality.
-- If you fixed changes in a past commit, look to use `git commit --amend` to add changes to the previous commit rather than creating a new one; thus keeping the commit history clean and concise. Your local branch will then be divergent from the remote for the amended commit(s), so GitHub won't let you push. Simply force push to overwrite your old branch :)
+- If you fixed changes in a past commit, use `git commit --amend` to add changes to the previous commit rather than creating a new one; thus keeping the commit history clean and concise.
+    - Only exception to this is if the commit already existed on the `main` branch, in which case a fixup commit should be made rather than an amend. If that commit is amended and force pushed, it will diverge the git history for the entire team.
+- If you ever amend, reorder, or rebase, your local branch will become divergent from the remote for the amended commit(s), so GitHub won't let you push. Simply force push to overwrite your old branch: `git push --force-with-lease`.
 
 The use of [Lazygit](https://github.com/jesseduffield/lazygit) is highly encouraged, as it provides a visual interface to manage your commits, branches, staging areas, stashes, and much more. It is also significantly easier to resolve merge conflicts, cherry-pick commits between branches, squash them, amend a few commits back, checkout a specific commit, stage in hunks, etc. You will be able to unlock the full power of Git without memorizing all the commands.
 
-We currently follow a [Trunk-based development](https://tilburgsciencehub.com/topics/automation/version-control/advanced-git/git-branching-strategies/) with a no-merge, no-squash, rebase-only workflow as the project is in its early stages. This essentially means you should always create a branch off `main` in the following format:
-`yourname/<conventional-spec>/<issue-number>-<issue-name-kebab-cased>`. For example, `johndoe/feat/1-add-login-page`. Do not do `git merge`; instead always pull the latest from `main`, check back out to your branch, then do `git rebase main`.
+We currently follow [Trunk-based development](https://tilburgsciencehub.com/topics/automation/version-control/advanced-git/git-branching-strategies/) with a no-merge, no-squash, rebase-only workflow as the project is in its early stages. This essentially means you should always create a branch off `main` in the following format:
+`yourname/<conventional-spec>/<issue-number>-<issue-name-kebab-cased>`. For example, `johndoe/feat/1-add-login-page`. 
+
+Do not do `git merge`, as this can create a merge commit unless you fast forward; instead always pull the latest from `main`, check back out to your branch, then do `git rebase main`.
 This keeps a clean, linear history that is free of merge commits and easy to debug.
 
 This is subject to change as the project and team scales. Our goal is to always keep branches as short-lived as possible, thus keeping cycle times to a minimum and reducing bugs.
