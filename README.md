@@ -1,10 +1,14 @@
 # Track the Hack 2024
 <hr/>
+
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
 <hr/>
 
 2024 edition of [Hack the Hill's](https://hackthehill.org/) flagship [hackathon](https://2024.hackthehill.com/) management platform, more commonly referred to as `Tracker App`.
+
 WCAG Compliant and fully accessible in order to provide the best user experience for hackers, sponsors, and organizers alike.
+
 Built with the latest stable technologies, and a strong commitment to the best developer experience through automation, tooling, and documentation.
 
 📚 **[Documentation](https://github.com/HacktheHill/tracker-app-2024/wiki)**
@@ -20,10 +24,13 @@ This project uses [pnpm](https://pnpm.io/), which is essentially [npm](https://n
 ```bash
 # Clone this repository
 git clone git@github.com:HacktheHill/tracker-app-2024.git
+
 # Navigate to repository
 cd tracker-app-2024
+
 # Install dependencies listed in package.json
 pnpm i
+
 # Run the app locally
 pnpm dev
 ```
@@ -35,7 +42,7 @@ We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0
 
 When you hit `enter` after doing `git commit`, it will trigger a [Git Hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) managed by [Husky](https://typicode.github.io/husky/), which triggers a [Commitlint](https://commitlint.js.org/) command to verify that your commit message meets the specified guidelines. Any messages that do not follow the specification will be rejected with feedback locally.
 
-In order to ease the process of writing commit messages, we've configured [Commitizen](https://commitizen-tools.github.io/commitizen/) to guide you through the process of writing a commit message interactively.
+In order to ease the process of learning the specification and writing compliant commit messages, we've configured [Commitizen](https://commitizen-tools.github.io/commitizen/) to guide you through the process of writing a commit message interactively.
 You can run `pnpm commit` to use this tool. This will guarantee that your commit messages are formatted correctly.
 
 With time, writing conventional commit messages will become second nature and you will no longer need to use Commitizen :)
@@ -44,7 +51,7 @@ With time, writing conventional commit messages will become second nature and yo
 - Each commit should be able to stand on its own, and each commit should build on the previous one. This way, if a commit introduces a bug, it should be easy to identify and revert.
 - Each commit should be deployable and not break the build, tests, or functionality.
 - If you're not sure if a commit should be split, it's better to split it if each commit is deployable and doesn't break the build, tests, or functionality.
-- If you fixed changes in a past commit, look to use `git commit --amend` to add changes to the previous commit rather than creating a new one; thus keeping the commit history clean and concise. Your local branch will then be divergent from the remote for the amended commit(s), so GitHub won't let you push. Simply force push :)
+- If you fixed changes in a past commit, look to use `git commit --amend` to add changes to the previous commit rather than creating a new one; thus keeping the commit history clean and concise. Your local branch will then be divergent from the remote for the amended commit(s), so GitHub won't let you push. Simply force push to overwrite your old branch :)
 
 The use of [Lazygit](https://github.com/jesseduffield/lazygit) is highly encouraged, as it provides a visual interface to manage your commits, branches, staging areas, stashes, and much more. It is also significantly easier to resolve merge conflicts, cherry-pick commits between branches, squash them, amend a few commits back, checkout a specific commit, stage in hunks, etc. You will be able to unlock the full power of Git without memorizing all the commands.
 
