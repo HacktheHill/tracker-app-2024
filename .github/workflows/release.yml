@@ -2,9 +2,9 @@ name: CI/CD Pipeline 🚀
 
 on:
   push:
-    branches: [main, master]
+    branches: [main]
   pull_request:
-    branches: [main, master]
+    branches: [main]
 
 jobs:
   release:
@@ -25,12 +25,18 @@ jobs:
       - name: Install dependencies 📂
         run: pnpm i
 
+      - name: Check Code Quality 🧐
+        run: pnpm lint
+
       - name: Build project 🏗️
-        env:
-          SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
+        # env:
+        #   SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
         run: pnpm build
 
       - name: Run Semantic Release 🤖
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: pnpm exec semantic-release
+
+      - name: Profit 💰
+        run: echo 🐞
