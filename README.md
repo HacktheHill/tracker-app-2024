@@ -2,7 +2,7 @@
 
 <hr/>
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![code style](https://antfu.me/badge-code-style.svg)](https://github.com/antfu/eslint-config)
 
 <hr/>
 
