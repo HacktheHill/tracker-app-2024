@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - .:/app
     command: pnpm run dev
@@ -21,8 +21,8 @@ services:
       POSTGRES_USER: dev
       POSTGRES_PASSWORD: hackthehill # this password is only used on local development databases, NOT the production database (in case anyone felt alarmed)
     ports:
-      - "5432:5432"
-    #volumes:
+      - '5432:5432'
+    # volumes:
     #  - postgres_data:/var/lib/postgresql/data
 
 volumes:

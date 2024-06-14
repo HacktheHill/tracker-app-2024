@@ -2,7 +2,7 @@
  * @type {import('semantic-release').GlobalConfig}
  */
 const config = {
-  branches: ["main"],
-};
+  branches: ['main'],
+}
 
-export default config;
+export default config
