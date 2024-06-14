@@ -14,7 +14,7 @@
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "--exit-zero-on-changes"
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
     "next": "14.2.3",
