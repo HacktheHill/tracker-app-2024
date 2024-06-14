@@ -1,4 +1,5 @@
 # Track the Hack 2024
+
 <hr/>
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
