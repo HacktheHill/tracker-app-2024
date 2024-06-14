@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code 🛎️
+      - name: Checkout Code 🛎️
         uses: actions/checkout@v4
 
       - name: Setup Node.js 🛠️
@@ -22,16 +22,28 @@ jobs:
       - name: Install pnpm 📦
         run: npm install -g pnpm
 
-      - name: Install dependencies 📂
+      - name: Install Dependencies 📂
         run: pnpm i
 
       - name: Check Code Quality 🧐
         run: pnpm lint
 
-      - name: Build project 🏗️
+      - name: Build Project 🏗️
         # env:
         #   SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
         run: pnpm build
+
+      # - name: Run Unit Tests 🔬
+      #   run: pnpm jest ...
+
+      # - name: Run Integration Tests 🔍
+      #   run: pnpm jest ...
+
+      # - name: Run E2E Tests ⌚💀
+      # run: pnpx playwright test
+
+      - name: Run Visual Tests 👀
+        run: pnpm run chromatic
 
       - name: Run Semantic Release 🤖
         env:
