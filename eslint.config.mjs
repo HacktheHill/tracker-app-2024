@@ -20,7 +20,9 @@ export default antfu({
   // `.eslintignore` is no longer supported in flat config, use `ignores` instead
   ignores: [
     "**/fixtures",
-    "eslint.config.mjs"
+    "eslint.config.mjs",
+    "!.storybook",
+    "storybook-static"
     // ...globs
   ],
 
@@ -28,6 +30,7 @@ export default antfu({
   ...compat.config({
     extends: [
       // "eslint:recommended",
+      "plugin:storybook/recommended"
       // Other extends...
     ],
   }),
