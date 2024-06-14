@@ -2,8 +2,16 @@
 
 <hr/>
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![code style](https://antfu.me/badge-code-style.svg)](https://github.com/antfu/eslint-config)
+🏗️ This project is a work in progress 🚧
 
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![code style](https://antfu.me/badge-code-style.svg)](https://github.com/antfu/eslint-config)
+![Repo Size](https://img.shields.io/github/repo-size/HacktheHill/tracker-app-2024)
+[![Maturity badge - level 1](https://img.shields.io/badge/Maturity-Level%201%20--%20New%20Project-yellow.svg)](https://github.com/tophat/getting-started/blob/master/scorecard.md)
+
+<!--[![App Status](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://www.chemicalgraphtheory.com) -->
+<!---[![Coverage Status](https://coveralls.io/repos/github/Sulstice/global-chem/badge.svg?branch=master)](https://github.com/HacktheHill/tracker-app-2024/tree/main) --->
 <hr/>
 
 2024 edition of [Hack the Hill's](https://hackthehill.org/) flagship [hackathon](https://2024.hackthehill.com/) management platform, more commonly referred to as `Tracker App`.
