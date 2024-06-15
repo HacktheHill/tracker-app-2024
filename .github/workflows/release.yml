@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout Code 🛎️
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js 🛠️
         uses: actions/setup-node@v4
@@ -43,6 +45,8 @@ jobs:
       # run: pnpx playwright test
 
       - name: Run Visual Tests 👀
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
         run: pnpm run chromatic
 
       - name: Run Semantic Release 🤖
