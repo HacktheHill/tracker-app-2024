@@ -60,10 +60,5 @@
   },
   "lint-staged": {
     "*": "eslint --cache --fix"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
   }
 }
