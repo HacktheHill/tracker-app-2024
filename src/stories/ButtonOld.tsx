@@ -27,7 +27,7 @@ interface ButtonProps {
 /**
  * Primary UI component for user interaction
  */
-export function Button({
+export function ButtonOld({
   primary = false,
   size = 'medium',
   backgroundColor,
