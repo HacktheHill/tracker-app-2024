@@ -9,6 +9,9 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20]
 
     steps:
       - name: Checkout Code 🛎️
@@ -16,13 +19,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js 🛠️
+      - name: Install pnpm 📦
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js ${{ matrix.node-version }} 🛠️
         uses: actions/setup-node@v4
         with:
-          node-version: 'lts/*'
-
-      - name: Install pnpm 📦
-        run: npm install -g pnpm
+          node-version: '${{ matrix.node-version }}'
+          cache: pnpm
 
       - name: Install Dependencies 📂
         run: pnpm i
@@ -30,10 +36,17 @@ jobs:
       - name: Check Code Quality 🧐
         run: pnpm lint
 
-      - name: Build Project 🏗️
-        # env:
-        #   SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
-        run: pnpm build
+      - name: Install Playwright 🎭
+        run: pnpm i playwright http-server wait-on; npx playwright install --with-deps
+
+      - name: Build Storybook 📔
+        run: pnpm build-storybook --quiet
+
+      - name: Serve Storybook and run tests 🧪
+        run: |
+          pnpx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+            "pnpm exec http-server storybook-static --port 6006 --silent" \
+            "pnpm exec wait-on tcp:6006 && pnpm test-storybook"
 
       # - name: Run Unit Tests 🔬
       #   run: pnpm jest ...
@@ -48,6 +61,11 @@ jobs:
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
         run: pnpm run chromatic
+
+      - name: Build Project 🏗️
+        # env:
+        #   SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
+        run: pnpm build
 
       - name: Run Semantic Release 🤖
         env:
