@@ -1,0 +1,143 @@
+---
+title: Onboarding Dev Docs
+description: A collection of resources for the Hack the Hill 2024 development team
+---
+
+Written in a beginner-friendly language in order to provide a smooth onboarding experience for [Hack the Hill's](https://hackthehill.org/) 2024 development team, and also act as a general open-source reference for other projects.
+
+## 🔭 Project Management
+
+- [GitHub Projects](https://github.com/) - Tracking issues, tasks, and progress directly within GitHub.
+    - Allows everyone to see what everyone else is up to, and do work without blocking each other.  
+
+- [OpenProject](https://www.openproject.org/) - Powerful open-source project management tool used by all teams at Hack the Hill.
+    - Only to keep an open line of communication with other teams. All technical tasks will be on GitHub Projects.
+
+## 🪄 UI/UX Design
+
+- [Figma](https://www.figma.com/) - An outrageously powerful collaborative design tool for wireframing ideas and prototyping mockups.
+    - Allows you to sort out your UI/UX first, saving you from writing code and end up building the wrong thing which also may look like potato🥔
+
+## 🐞 Development
+
+### 📦 Package Manager
+
+- [pnpm](https://pnpm.io/) - Drop-in replacement for (npm)(https://www.npmjs.com/) that is faster and better in almost every way.
+    - [npm-pnpm command equivalents](https://pnpm.io/pnpm-cli#commands)
+    - Better for both the disk health of your computer and the speed of our CI/CD pipelines
+
+### ✨Front-End
+
+- [TypeScript](https://www.typescriptlang.org/) - Javascript on steroids.
+    - Catches your silly bugs before you can even run the code.
+
+- [React](https://reactjs.org/) - A JavaScript view layer library for building user interfaces.
+    - Emphasis on the library part, it's not a framework.
+    - Very bueno for saving you from writing all the HTML yourself, and adding small bits of interactivity.
+    - Not so bueno for heavyweight interactivity, need bigger guns and external libraries for that. 
+
+- [Next.js](https://nextjs.org/) - An unopinionated and batteries-not-included React framework with routing, server-side rendering, image optimizations, and many other things.
+    - In a nutshell, pulls all kinds of strings that allow you to use React without setting the user's computer on fire.
+
+- [Storybook](https://storybook.js.org/) - A framework for developing and testing UI components in isolation.
+    - Allows you to make your buttons in peace, without having to launch the entire main app to see it.
+    - Also doubles as documentation for our design system and a playground for anything and everything the user sees in the main app, in any state; saving you valuable clickity clicks.
+
+- [TailwindCSS](https://tailwindcss.com/) - A utility-first CSS framework to style components super fast.
+    - No more separate stylesheets. Won't necessarily fix your potato UI but will allow you to make them faster and with less debugging.
+    - Does not scale well and makes codebases unreadable by mixing styling and business logic. This is addressed by good React component architecture in tandem with the libraries below. 
+
+- [Radix UI Primitives](https://www.radix-ui.com/primitives) - Unstyled headless components that we can easily lay our design system on top of.
+    - Also handles accessibility, saving us from writing and a maintaining a lot of code + tests.
+
+- [Shadcn/ui](https://ui.shadcn.dev/) - A modern component library built on top of Radix UI Primitives and styled with Tailwind, combining accessibility, customizability, and business logic into one.
+    - Has an entire ecosystem of other libraries and heavily supported by the community, making it easy for us to find any component we need.
+    - Also has maintained Figma files and Storybooks, allowing us to tightly integrate design mockups with the frontend.
+    - Not an npm package, and therefore easily modifiable because we have direct access to code. Even comes with tools so that we can track how much we changed the original look.
+
+### ⁉️ State Management
+
+- [Redux](https://redux.js.org/) - Purpose-built and highly opinionated state management library.
+    - Lots of documentation, large community, and rich ecosystem of plugins.
+    - Helps you manage variables that are highly susceptible to change, and upon which lots of other variables may depend on.
+    - Separates state management from the React view layer and other business logic entirely, and therefore scales well + easy to debug.
+
+### ⚙️ Back-End & Middleware
+
+- [Sanity](https://www.sanity.io/) - Content Management System to hold static data displayed across our websites and apps.
+    - Provides a database that stores static content such as text and images away from our codebase, so that other teams can change them directly through a nice admin dashboard without having to contact us.
+    - Gives us the power of WordPress without getting in our way for customizability.
+
+- [Auth.js?](https://auth.js.org/) - Handling authentication safely and securely.
+    - Allows people to log in to our app with pre-existing Google/Microsoft/Apple accounts, saving us from having to deal with their sensitive data.
+
+- [tRPC?](https://trpc.io/) - End-to-end typesafe API layer for interfacing with databases.
+
+- [GraphQL](https://graphql.org/) - A query language for the Sanity Content Lake API.
+    - Content Lake is just a fancy term for database.
+    - The `QL` part stands for `Query Language`, allowing us to ask the database for exactly what we need and display it on the frontend.
+
+- [PostgreSQL](https://www.postgresql.org/) - World's most powerful open-source relational database system.
+
+- [Graphile?](https://www.graphile.org/postgraphile/)
+
+- [Supabase?](https://supabase.com/)
+
+## 🧹 Code Quality
+
+- [ESlint](https://eslint.org/) - Find and fix problems in code, and enforce style guide and best practices.
+    - Saves you from having to memorize and study our style guide by giving you instant feedback while coding.
+    - Saves us from having to make our entire style guide and re-invent best practices from scratch through plugins such as [Airbnb JavaScript Style Guide](https://airbnb.io/javascript/). Allows us to make a hybrid style guide of our own based on other pre-existing style guides such as [this one](https://github.com/antfu/eslint-config) from the creator [Vitest](https://vitest.dev/).
+    - Can catch lightweight surface bugs. Cannot catch deep business logic bugs, but prevents the likelihood of them happening by catching the surface bugs.
+
+- [Prettier](https://prettier.io/) - An opinionated code formatter to make code Prettier.
+    - Cannot catch bugs. Only handles fixing inconsistencies in spacing, quotes, semicolons, parentheses, brackets, etc.
+
+- [Commitizen](https://commitizen.github.io/cz-cli/) - A tool to create standardized commit messages that adhere to the [conventional commits specification](https://www.conventionalcommits.org/en/v1.0.0/) + our sprinkles on top.
+   - [Why Use Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#why-use-conventional-commits)
+
+- [Commitlint](https://commitlint.js.org/) - Lint commit messages according to our specifications.
+    - [Commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional) - Plugin that enforces conventional commits for commit messages and allows us to modify them.
+    - [Commitlint/cz-commitlint](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/cz-commitlint) - Provides an integration for Commitizen so that the only options displayed to you are the same ones defined in Commitlint.
+    - In a nutshell, blocks commit messages that do not meet our specs, which in turn saves our CI pipelines from crashing or creating the wrong versions, which in turn ensures our whole app doesn't blow up.
+
+- [Lint-staged](https://github.com/okonet/lint-staged) - Runs ESLint and Prettier on Git staged files so that there are no code style diffs at the PR level.
+
+- [Husky](https://typicode.github.io/husky/#/) - Library that allows us to quickly and easily trigger Git hooks, which in turn trigger commands to run the tools mentioned above.
+
+## ⚗️ Testing
+
+- [Jest](https://jestjs.io/) - For writing both unit tests and integration tests.
+    - Code with piece of mind and get instant feedback if you break something.
+
+- [Playwright](https://playwright.dev/) - For End-to-end testing of our entire app.
+    - Instead of clicking around the entire app yourself to see if it still works after every single time you make a change, why not let a robot do it for you?
+
+- [Storybook Test Runner](https://storybook.js.org/docs/writing-tests/test-runner) - Executes Jest and Playwright test suites on design system components, along with handling accessibility testing, and coverage testing using plugins. 
+
+- [Chromatic](https://www.chromatic.com/) - Visual test server platform to easily spot differences in UI and discuss them as a team, integrated with Storybook.
+    - Can catch visual bugs by comparing new renders with a specified baseline, and block the changes from making it to production prior to being reviewed.
+
+## ☁️ Deployment
+
+- [Semantic Release](https://semantic-release.gitbook.io/semantic-release/) - Automated versioning and package publishing as per the [Semantic Versioning](https://semver.org/) specification.
+    - Parses the history of commit messages to automatically generate changelogs.
+    - Requires conventional commit specs to be followed in order to work properly.
+
+- [GitHub Actions](https://github.com/features/actions) - Automated CI/CD pipelines to run linting, test suites, and handle versioning.
+    - The final boss you need to defeat before human eyes even see your code.
+    - Very fun to configure and watch at work. Not very fun to debug ☁️
+
+- [Vercel](https://vercel.com/) - For safely deploying our app to the web so that people can see and use it from their browsers.
+    - Uses [AWS](https://aws.amazon.com/) under the hood.
+    - Integrates well with Next.js and also allows for demo deployments for our own purposes which are not indexed on google.
+    - If we push a version that makes it past all our tests but somehow breaks at the build stage, Vercel will provide instant feedback and not deploy it, leaving up the previous functional version.
+    - Also allows quick and easy rollbacks to previously deployed versions.
+
+- [Cloudflare](https://www.cloudflare.com/) - For hosting our `hackthehill.com` domain name, which we use for our websites and email addresses.
+
+- [Docker](https://www.docker.com/) - Containerization platform to develop, ship, and run the app anywhere.
+    - Your computer is a box. Someone else's computer is a box. Your box is different from their box. The thing works on their box but not yours. What if both of you used the same box with the same configs and could easily pass it around like hot potato?📦🤔
+    - Docker is that box, more fancily referred to as a 'container'. Both of you run this box inside your box. It works for both of you by boxception.
+
+---
